@@ -66,5 +66,18 @@ func createPokemon(name string) Pokemon {
 	pokeJson.Type_1 = strings.Title(pokeJson.Type_1)
 	pokeJson.Type_2 = strings.Title(pokeJson.Type_2)
 
+	pokeJsonHeight := convertHeight(pokeJson.Height)
+	pokeJson.Height = pokeJsonHeight
+
 	return pokeJson
+}
+
+func convertHeight(height int) string {
+	fmt.Println(height)
+
+	if height >= 10 {
+		return "higher than or equal to 10"
+	} else {
+		return "lower than 10"
+	}
 }
