@@ -32,6 +32,9 @@ func show(pokemon Pokemon) {
 	fmt.Println("Name:", pokemon.Name)
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
+	fmt.Println("Height:", pokemon.Height)
+	fmt.Println("Weight:", pokemon.Weight)
+
 	if pokemon.Type_2 == "" {
 		fmt.Println("Type:", pokemon.Type_1)
 	} else {
@@ -63,9 +66,16 @@ func CreatePokemon(name string) Pokemon {
 	pokeJson.Name = strings.Title(pokeJson.Name)
 	pokeJson.Type_1 = strings.Title(pokeJson.Type_1)
 	pokeJson.Type_2 = strings.Title(pokeJson.Type_2)
-	for i := 0; i < len(pokeJson.Moves); i++ {
-		pokeJson.Moves[i] = strings.Title(pokeJson.Moves[i])
-	}
+
+	var pokeJsonHeight int
+	pokeJsonHeight = pokeJson.Height
+	pokeJson.Height = convertHeight(pokeJson.Height)
 
 	return pokeJson
+}
+
+func convertHeight(height int) string {
+	fmt.Println(height)
+
+	return "test height"
 }
