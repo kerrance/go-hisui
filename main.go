@@ -25,7 +25,7 @@ func main() {
 
 	fmt.Println("Search for a Pokémon by name: ")
 	fmt.Scanf("%s", &enteredPokemonName)
-	show(CreatePokemon(enteredPokemonName))
+	show(createPokemon(enteredPokemonName))
 }
 
 func show(pokemon Pokemon) {
@@ -43,7 +43,7 @@ func show(pokemon Pokemon) {
 	}
 }
 
-func CreatePokemon(name string) Pokemon {
+func createPokemon(name string) Pokemon {
 	pokemonUrl := "https://pokeapi.co/api/v2/pokemon/"
 	req, _ := http.Get(pokemonUrl + strings.ToLower(name))
 
