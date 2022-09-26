@@ -11,13 +11,12 @@ import (
 )
 
 type Pokemon struct {
-	Name   string   `njson:"name"`
-	ID     int      `njson:"id"`
-	Height int      `njson:"height"`
-	Weight int      `njson:"weight"`
-	Type_1 string   `njson:"types.0.type.name"`
-	Type_2 string   `njson:"types.1.type.name"`
-	Moves  []string `njson:"moves.#.move.name"`
+	Name   string `njson:"name"`
+	ID     int    `njson:"id"`
+	Height int    `njson:"height"`
+	Weight int    `njson:"weight"`
+	Type_1 string `njson:"types.0.type.name"`
+	Type_2 string `njson:"types.1.type.name"`
 }
 
 func main() {
