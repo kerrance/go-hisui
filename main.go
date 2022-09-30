@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -31,7 +32,7 @@ func show(pokemon Pokemon) {
 	fmt.Println("Name:", pokemon.Name)
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
-	fmt.Println("Height:", pokemon.Height)
+	fmt.Println("Height:", convertDecimetersToMeters(pokemon.Height))
 	fmt.Println("Weight:", pokemon.Weight)
 
 	if pokemon.Type_2 == "" {
@@ -39,6 +40,14 @@ func show(pokemon Pokemon) {
 	} else {
 		fmt.Println("Type 1:", pokemon.Type_1)
 		fmt.Println("Type 2:", pokemon.Type_2)
+	}
+}
+
+func convertDecimetersToMeters(height int) string {
+	if height >= 10 {
+		//
+	} else {
+		return "0." + strconv.Itoa(height) + "m"
 	}
 }
 
@@ -66,18 +75,5 @@ func createPokemon(name string) Pokemon {
 	pokeJson.Type_1 = strings.Title(pokeJson.Type_1)
 	pokeJson.Type_2 = strings.Title(pokeJson.Type_2)
 
-	pokeJsonHeight := convertHeight(pokeJson.Height)
-	pokeJson.Height = pokeJsonHeight
-
 	return pokeJson
-}
-
-func convertHeight(height int) string {
-	fmt.Println(height)
-
-	if height >= 10 {
-		return "higher than or equal to 10"
-	} else {
-		return "lower than 10"
-	}
 }
