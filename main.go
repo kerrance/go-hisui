@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/m7shapan/njson"
@@ -15,8 +16,8 @@ type Pokemon struct {
 	ID     int    `njson:"id"`
 	Height int    `njson:"height"`
 	Weight int    `njson:"weight"`
-	Type_1 string `njson:"types.0.type.name"`
-	Type_2 string `njson:"types.1.type.name"`
+	Type1  string `njson:"types.0.type.name"`
+	Type2  string `njson:"types.1.type.name"`
 }
 
 func main() {
@@ -31,14 +32,37 @@ func show(pokemon Pokemon) {
 	fmt.Println("Name:", pokemon.Name)
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
-	fmt.Println("Height:", pokemon.Height)
-	fmt.Println("Weight:", pokemon.Weight)
+	fmt.Println("Height:", convertDecimetersToMeters(pokemon.Height))
+	fmt.Println("Weight:", convertHectogramsToKilograms(pokemon.Weight))
 
-	if pokemon.Type_2 == "" {
-		fmt.Println("Type:", pokemon.Type_1)
+	if pokemon.Type2 == "" {
+		fmt.Println("Type:", pokemon.Type1)
 	} else {
-		fmt.Println("Type 1:", pokemon.Type_1)
-		fmt.Println("Type 2:", pokemon.Type_2)
+		fmt.Println("Type 1:", pokemon.Type1)
+		fmt.Println("Type 2:", pokemon.Type2)
+	}
+}
+
+func convertDecimetersToMeters(height int) string {
+	if height >= 10 {
+		var heightAsFloat = float64(height)
+		var adjustedHeight = heightAsFloat / float64(10)
+		return fmt.Sprintf("%g", adjustedHeight) + "m"
+	} else {
+		return "0." + strconv.Itoa(height) + "m"
+	}
+}
+
+func convertHectogramsToKilograms(weight int) string {
+	if weight >= 10 {
+		var weightAsFloat = float64(weight)
+		var adjustedWeight = weightAsFloat / float64(10)
+		return fmt.Sprintf("%g", adjustedWeight) + "kg"
+	} else {
+		var weightAsFloat = float64(weight)
+		var adjustedWeight = weightAsFloat * 2.2
+		var weightAsPounds = adjustedWeight / float64(10)
+		return fmt.Sprintf("%.1f", weightAsPounds) + "lbs"
 	}
 }
 
@@ -62,9 +86,9 @@ func createPokemon(name string) Pokemon {
 		fmt.Println(err)
 	}
 
-	pokeJson.Name = strings.Title(pokeJson.Name)
-	pokeJson.Type_1 = strings.Title(pokeJson.Type_1)
-	pokeJson.Type_2 = strings.Title(pokeJson.Type_2)
+	pokeJson.Name = strings.ToTitle(pokeJson.Name)
+	pokeJson.Type1 = strings.ToTitle(pokeJson.Type1)
+	pokeJson.Type2 = strings.ToTitle(pokeJson.Type2)
 
 	return pokeJson
 }
