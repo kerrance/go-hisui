@@ -33,7 +33,7 @@ func show(pokemon Pokemon) {
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
 	fmt.Println("Height:", convertDecimetersToMeters(pokemon.Height))
-	fmt.Println("Weight:", pokemon.Weight)
+	fmt.Println("Weight:", convertHectogramsToKilograms(pokemon.Weight))
 
 	if pokemon.Type2 == "" {
 		fmt.Println("Type:", pokemon.Type1)
@@ -50,6 +50,19 @@ func convertDecimetersToMeters(height int) string {
 		return fmt.Sprintf("%g", adjustedHeight) + "m"
 	} else {
 		return "0." + strconv.Itoa(height) + "m"
+	}
+}
+
+func convertHectogramsToKilograms(weight int) string {
+	if weight >= 10 {
+		var weightAsFloat = float64(weight)
+		var adjustedWeight = weightAsFloat / float64(10)
+		return fmt.Sprintf("%g", adjustedWeight) + "kg"
+	} else {
+		var weightAsFloat = float64(weight)
+		var adjustedWeight = weightAsFloat * 2.2
+		var weightAsPounds = adjustedWeight / float64(10)
+		return fmt.Sprintf("%.1f", weightAsPounds) + "lbs"
 	}
 }
 
