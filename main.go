@@ -45,12 +45,9 @@ func show(pokemon Pokemon) {
 
 func convertDecimetersToMeters(height int) string {
 	if height >= 10 {
-		heightSlice := []int{}
-		for height > 0 {
-			heightSlice = append(heightSlice, height%10)
-			height = height / 10
-		}
-		return strings.Trim(strings.Replace(fmt.Sprint(heightSlice), " ", delim, -1), "[]")
+		var heightAsFloat = float64(height)
+		var adjustedHeight = heightAsFloat / float64(10)
+		return fmt.Sprintf("%g", adjustedHeight) + "m"
 	} else {
 		return "0." + strconv.Itoa(height) + "m"
 	}
