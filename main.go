@@ -48,6 +48,12 @@ func show(pokemon Pokemon) {
 		fmt.Println("Type 1:", pokemon.Type1)
 		fmt.Println("Type 2:", pokemon.Type2)
 	}
+
+	fmt.Println("----- Abilities -----")
+	for i, pokemonAbilities := range pokemon.Abilities {
+		printPokemonAbilities(pokemonAbilities)
+		i++
+	}
 }
 
 func convertDecimetersToMeters(height int) string {
@@ -71,6 +77,16 @@ func convertHectogramsToKilograms(weight int) string {
 		var weightAsPounds = adjustedWeight / float64(10)
 		return fmt.Sprintf("%.1f", weightAsPounds) + "lbs"
 	}
+}
+
+func printPokemonAbilities(ability Ability) {
+	if ability.IsHidden == true {
+		fmt.Print("Hidden Ability:")
+	} else {
+		fmt.Print("Ability ", ability.Slot, ":")
+	}
+
+	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
 }
 
 func createPokemon(name string) Pokemon {
