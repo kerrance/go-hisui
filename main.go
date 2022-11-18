@@ -12,12 +12,19 @@ import (
 )
 
 type Pokemon struct {
-	Name   string `njson:"name"`
-	ID     int    `njson:"id"`
-	Height int    `njson:"height"`
-	Weight int    `njson:"weight"`
-	Type1  string `njson:"types.0.type.name"`
-	Type2  string `njson:"types.1.type.name"`
+	Name      string    `njson:"name"`
+	ID        int       `njson:"id"`
+	Height    int       `njson:"height"`
+	Weight    int       `njson:"weight"`
+	Type1     string    `njson:"types.0.type.name"`
+	Type2     string    `njson:"types.1.type.name"`
+	Abilities []Ability `njson:"abilities"`
+}
+
+type Ability struct {
+	Slot     uint8  `njson:"slot"`
+	Name     string `njson:"ability.name"`
+	IsHidden bool   `njson:"is_hidden"`
 }
 
 func main() {
