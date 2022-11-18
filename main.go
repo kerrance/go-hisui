@@ -12,12 +12,19 @@ import (
 )
 
 type Pokemon struct {
-	Name   string `njson:"name"`
-	ID     int    `njson:"id"`
-	Height int    `njson:"height"`
-	Weight int    `njson:"weight"`
-	Type1  string `njson:"types.0.type.name"`
-	Type2  string `njson:"types.1.type.name"`
+	Name      string    `njson:"name"`
+	ID        int       `njson:"id"`
+	Height    int       `njson:"height"`
+	Weight    int       `njson:"weight"`
+	Type1     string    `njson:"types.0.type.name"`
+	Type2     string    `njson:"types.1.type.name"`
+	Abilities []Ability `njson:"abilities"`
+}
+
+type Ability struct {
+	Slot     uint8  `njson:"slot"`
+	Name     string `njson:"ability.name"`
+	IsHidden bool   `njson:"is_hidden"`
 }
 
 func main() {
@@ -40,6 +47,12 @@ func show(pokemon Pokemon) {
 	} else {
 		fmt.Println("Type 1:", pokemon.Type1)
 		fmt.Println("Type 2:", pokemon.Type2)
+	}
+
+	fmt.Println("----- Abilities -----")
+	for i, pokemonAbilities := range pokemon.Abilities {
+		printPokemonAbilities(pokemonAbilities)
+		i++
 	}
 }
 
@@ -64,6 +77,16 @@ func convertHectogramsToKilograms(weight int) string {
 		var weightAsPounds = adjustedWeight / float64(10)
 		return fmt.Sprintf("%.1f", weightAsPounds) + "lbs"
 	}
+}
+
+func printPokemonAbilities(ability Ability) {
+	if ability.IsHidden == true {
+		fmt.Print("Hidden Ability:")
+	} else {
+		fmt.Print("Ability ", ability.Slot, ":")
+	}
+
+	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
 }
 
 func createPokemon(name string) Pokemon {
