@@ -1,4 +1,4 @@
-# go-hisui
+# Hisui
 
 Search for and display information about a Pokémon.
 
