@@ -16,9 +16,13 @@ type Pokemon struct {
 	ID        int       `njson:"id"`
 	Height    int       `njson:"height"`
 	Weight    int       `njson:"weight"`
-	Type1     string    `njson:"types.0.type.name"`
-	Type2     string    `njson:"types.1.type.name"`
+	Types     []Type    `njson:"types"`
 	Abilities []Ability `njson:"abilities"`
+}
+
+type Type struct {
+	Slot uint8  `njson:"slot"`
+	Name string `njson:"type.name"`
 }
 
 type Ability struct {
@@ -43,11 +47,10 @@ func show(pokemon Pokemon) {
 	fmt.Println("Weight:", convertHectogramsToKilograms(pokemon.Weight))
 
 	fmt.Println("------- Types -------")
-	if pokemon.Type2 == "" {
-		fmt.Println("Type:", pokemon.Type1)
-	} else {
-		fmt.Println("Type 1:", pokemon.Type1)
-		fmt.Println("Type 2:", pokemon.Type2)
+	for _, pokemonTypes := range pokemon.Types {
+		fmt.Print("Type ", pokemonTypes.Slot, ":")
+
+		fmt.Printf(" %+v\n", strings.ToTitle(pokemonTypes.Name))
 	}
 
 	fmt.Println("----- Abilities -----")
@@ -110,8 +113,6 @@ func createPokemon(name string) Pokemon {
 	}
 
 	pokeJson.Name = strings.ToTitle(pokeJson.Name)
-	pokeJson.Type1 = strings.ToTitle(pokeJson.Type1)
-	pokeJson.Type2 = strings.ToTitle(pokeJson.Type2)
 
 	return pokeJson
 }
