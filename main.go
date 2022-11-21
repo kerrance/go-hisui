@@ -50,9 +50,8 @@ func show(pokemon Pokemon) {
 	}
 
 	fmt.Println("----- Abilities -----")
-	for i, pokemonAbilities := range pokemon.Abilities {
+	for _, pokemonAbilities := range pokemon.Abilities {
 		printPokemonAbilities(pokemonAbilities)
-		i++
 	}
 }
 
