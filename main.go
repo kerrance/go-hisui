@@ -42,6 +42,7 @@ func show(pokemon Pokemon) {
 	fmt.Println("Height:", convertDecimetersToMeters(pokemon.Height))
 	fmt.Println("Weight:", convertHectogramsToKilograms(pokemon.Weight))
 
+	fmt.Println("------- Types -------")
 	if pokemon.Type2 == "" {
 		fmt.Println("Type:", pokemon.Type1)
 	} else {
