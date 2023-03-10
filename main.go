@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/kerrance/go-hisui/app"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -11,26 +12,6 @@ import (
 	"github.com/m7shapan/njson"
 )
 
-type Pokemon struct {
-	Name      string    `njson:"name"`
-	ID        int       `njson:"id"`
-	Height    int       `njson:"height"`
-	Weight    int       `njson:"weight"`
-	Types     []Type    `njson:"types"`
-	Abilities []Ability `njson:"abilities"`
-}
-
-type Type struct {
-	Slot uint8  `njson:"slot"`
-	Name string `njson:"type.name"`
-}
-
-type Ability struct {
-	Slot     uint8  `njson:"slot"`
-	Name     string `njson:"ability.name"`
-	IsHidden bool   `njson:"is_hidden"`
-}
-
 func main() {
 	var enteredPokemonName string
 
@@ -39,7 +20,7 @@ func main() {
 	show(createPokemon(enteredPokemonName))
 }
 
-func show(pokemon Pokemon) {
+func show(pokemon app.Pokemon) {
 	fmt.Println("Name:", pokemon.Name)
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
@@ -82,7 +63,7 @@ func convertHectogramsToKilograms(weight int) string {
 	}
 }
 
-func printPokemonAbilities(ability Ability) {
+func printPokemonAbilities(ability app.Ability) {
 	if ability.IsHidden == true {
 		fmt.Print("Hidden Ability:")
 	} else {
@@ -92,7 +73,7 @@ func printPokemonAbilities(ability Ability) {
 	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
 }
 
-func createPokemon(name string) Pokemon {
+func createPokemon(name string) app.Pokemon {
 	pokemonUrl := "https://pokeapi.co/api/v2/pokemon/"
 	req, _ := http.Get(pokemonUrl + strings.ToLower(name))
 
@@ -101,7 +82,7 @@ func createPokemon(name string) Pokemon {
 	}
 	defer req.Body.Close()
 
-	pokeJson := Pokemon{}
+	pokeJson := app.Pokemon{}
 
 	json, err := ioutil.ReadAll(req.Body)
 	if err != nil {
