@@ -15,9 +15,7 @@ func Show(pokemon models.Pokemon) {
 
 	fmt.Println("------- Types -------")
 	for _, pokemonTypes := range pokemon.Types {
-		fmt.Print("Type ", pokemonTypes.Slot, ":")
-
-		fmt.Printf(" %+v\n", strings.ToTitle(pokemonTypes.Name))
+		printPokemonTypes(pokemonTypes)
 	}
 
 	fmt.Println("----- Abilities -----")
@@ -26,12 +24,18 @@ func Show(pokemon models.Pokemon) {
 	}
 }
 
-func printPokemonAbilities(ability models.Ability) {
-	if ability.IsHidden == true {
+func printPokemonTypes(pokemonType models.Type) {
+	fmt.Print("Type ", pokemonType.Slot, ":")
+
+	fmt.Printf(" %+v\n", strings.ToTitle(pokemonType.Name))
+}
+
+func printPokemonAbilities(pokemonAbility models.Ability) {
+	if pokemonAbility.IsHidden == true {
 		fmt.Print("Hidden Ability:")
 	} else {
-		fmt.Print("Ability ", ability.Slot, ":")
+		fmt.Print("Ability ", pokemonAbility.Slot, ":")
 	}
 
-	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
+	fmt.Printf(" %+v\n", strings.ToTitle(pokemonAbility.Name))
 }
