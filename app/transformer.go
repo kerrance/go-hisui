@@ -52,5 +52,12 @@ func printPokemonAbilities(pokemonAbility models.Ability) {
 		fmt.Print("Ability ", pokemonAbility.Number, ":")
 	}
 
-	fmt.Printf(" %+v\n", pokemonAbility.Name)
+	_, err := printPokemonAbility(pokemonAbility)
+	if err != nil {
+		return
+	}
+}
+
+func printPokemonAbility(pokemonAbility models.Ability) (int, error) {
+	return fmt.Printf(" %+v\n", pokemonAbility.Name)
 }
