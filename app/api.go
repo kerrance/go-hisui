@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app/models"
 	"github.com/m7shapan/njson"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -19,7 +19,7 @@ func CreatePokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
 	}
 	defer req.Body.Close()
 
-	json, err := ioutil.ReadAll(req.Body)
+	json, err := io.ReadAll(req.Body)
 	if err != nil {
 		log.Fatal("An unexpected error occurred:", err)
 	}
