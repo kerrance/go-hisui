@@ -4,20 +4,21 @@ import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app"
 	"github.com/kerrance/go-hisui/app/models"
-	"io/ioutil"
 	"log"
-	"net/http"
 	"strings"
-
-	"github.com/m7shapan/njson"
 )
 
 func main() {
-	var enteredPokemonName string
+	var enteredPokemonNameOrPokedexNumber string
 
 	fmt.Println("Search for a Pokémon by name: ")
-	fmt.Scanf("%s", &enteredPokemonName)
-	show(createPokemon(enteredPokemonName))
+
+	_, err := fmt.Scanf("%s", &enteredPokemonNameOrPokedexNumber)
+	if err != nil {
+		log.Fatal("An unexpected error occurred:", err)
+	}
+
+	show(app.FindPokemon(enteredPokemonNameOrPokedexNumber))
 }
 
 func show(pokemon models.Pokemon) {
@@ -48,29 +49,4 @@ func printPokemonAbilities(ability models.Ability) {
 	}
 
 	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
-}
-
-func createPokemon(name string) models.Pokemon {
-	pokemonUrl := "https://pokeapi.co/api/v2/pokemon/"
-	req, _ := http.Get(pokemonUrl + strings.ToLower(name))
-
-	if req.StatusCode != 200 {
-		log.Fatalln("Pokémon not found. Please correct your search term and try again.")
-	}
-	defer req.Body.Close()
-
-	pokeJson := models.Pokemon{}
-
-	json, err := ioutil.ReadAll(req.Body)
-	if err != nil {
-		log.Fatal("An unexpected error occurred:", err)
-	}
-
-	if err := njson.Unmarshal(json, &pokeJson); err != nil {
-		fmt.Println(err)
-	}
-
-	pokeJson.Name = strings.ToTitle(pokeJson.Name)
-
-	return pokeJson
 }
