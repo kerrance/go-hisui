@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app"
+	"github.com/kerrance/go-hisui/app/models"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -19,7 +20,7 @@ func main() {
 	show(createPokemon(enteredPokemonName))
 }
 
-func show(pokemon app.Pokemon) {
+func show(pokemon models.Pokemon) {
 	fmt.Println("Name:", pokemon.Name)
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
@@ -39,7 +40,7 @@ func show(pokemon app.Pokemon) {
 	}
 }
 
-func printPokemonAbilities(ability app.Ability) {
+func printPokemonAbilities(ability models.Ability) {
 	if ability.IsHidden == true {
 		fmt.Print("Hidden Ability:")
 	} else {
@@ -49,7 +50,7 @@ func printPokemonAbilities(ability app.Ability) {
 	fmt.Printf(" %+v\n", strings.ToTitle(ability.Name))
 }
 
-func createPokemon(name string) app.Pokemon {
+func createPokemon(name string) models.Pokemon {
 	pokemonUrl := "https://pokeapi.co/api/v2/pokemon/"
 	req, _ := http.Get(pokemonUrl + strings.ToLower(name))
 
@@ -58,7 +59,7 @@ func createPokemon(name string) app.Pokemon {
 	}
 	defer req.Body.Close()
 
-	pokeJson := app.Pokemon{}
+	pokeJson := models.Pokemon{}
 
 	json, err := ioutil.ReadAll(req.Body)
 	if err != nil {
