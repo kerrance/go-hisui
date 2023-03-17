@@ -33,7 +33,7 @@ func printPokemonAbilities(pokemonAbility models.Ability) {
 	if pokemonAbility.IsHidden == true {
 		fmt.Print("Hidden Ability:")
 	} else {
-		fmt.Print("Ability ", pokemonAbility.Slot, ":")
+		fmt.Print("Ability ", pokemonAbility.Number, ":")
 	}
 
 	fmt.Printf(" %+v\n", pokemonAbility.Name)
