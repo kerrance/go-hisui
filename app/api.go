@@ -17,7 +17,6 @@ func CreatePokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
 	if req.StatusCode != 200 {
 		log.Fatalln("Pokémon not found. Please correct your search term and try again.")
 	}
-	defer req.Body.Close()
 
 	json, err := io.ReadAll(req.Body)
 	if err != nil {
