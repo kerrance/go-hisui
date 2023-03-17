@@ -3,11 +3,10 @@ package app
 import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app/models"
-	"strings"
 )
 
 func Show(pokemon models.Pokemon) {
-	fmt.Println("Name:", pokemon.Name)
+	fmt.Println("Name:", ConvertStringToTitleCase(pokemon.Name))
 	fmt.Println("National Pokédex number:", pokemon.ID)
 
 	fmt.Println("Height:", ConvertDecimetersToMeters(pokemon.Height))
@@ -27,7 +26,7 @@ func Show(pokemon models.Pokemon) {
 func printPokemonTypes(pokemonType models.Type) {
 	fmt.Print("Type ", pokemonType.Slot, ":")
 
-	fmt.Printf(" %+v\n", strings.ToTitle(pokemonType.Name))
+	fmt.Printf(" %+v\n", ConvertStringToTitleCase(pokemonType.Name))
 }
 
 func printPokemonAbilities(pokemonAbility models.Ability) {

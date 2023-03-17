@@ -2,8 +2,14 @@ package app
 
 import (
 	"fmt"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"strconv"
 )
+
+func ConvertStringToTitleCase(stringToConvert string) string {
+	return cases.Title(language.Und, cases.NoLower).String(stringToConvert)
+}
 
 func ConvertDecimetersToMeters(height int) string {
 	if height >= 10 {
