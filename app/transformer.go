@@ -23,7 +23,7 @@ func Show(pokemon models.Pokemon) {
 
 	fmt.Println("----- Abilities -----")
 	if (len(pokemon.Abilities) == 2) && (pokemon.Abilities[0].Name == pokemon.Abilities[1].Name) {
-		fmt.Print("Ability: ")
+		fmt.Print("Ability:")
 		_, err := printPokemonAbility(pokemon.Abilities[0])
 		if err != nil {
 			return
