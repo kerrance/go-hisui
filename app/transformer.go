@@ -7,8 +7,7 @@ import (
 
 func Show(pokemon models.Pokemon) {
 	fmt.Println("Name:", ConvertStringToTitleCase(pokemon.Name))
-	fmt.Println("National Pokédex number:", pokemon.ID)
-
+	fmt.Printf("National Pokédex number: %0*d\n", 4, pokemon.ID)
 	fmt.Println("Height:", ConvertDecimetersToMeters(pokemon.Height))
 	fmt.Println("Weight:", ConvertHectogramsToKilograms(pokemon.Weight))
 

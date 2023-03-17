@@ -9,7 +9,7 @@ import (
 func main() {
 	var enteredPokemonNameOrPokedexNumber string
 
-	fmt.Println("Search for a Pokémon by name: ")
+	fmt.Println("Search for a Pokémon by name, or National Pokédex number:")
 
 	_, err := fmt.Scanf("%s", &enteredPokemonNameOrPokedexNumber)
 	if err != nil {
