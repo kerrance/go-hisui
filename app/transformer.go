@@ -13,12 +13,12 @@ func Show(pokemon models.Pokemon) {
 	fmt.Println("Weight:", ConvertHectogramsToKilograms(pokemon.Weight))
 
 	fmt.Println("------- Types -------")
-	moreThanOneType := false
+	singleType := true
 	if len(pokemon.Types) > 1 {
-		moreThanOneType = true
+		singleType = false
 	}
 	for _, pokemonTypes := range pokemon.Types {
-		printPokemonTypes(pokemonTypes, moreThanOneType)
+		printPokemonTypes(pokemonTypes, singleType)
 	}
 
 	fmt.Println("----- Abilities -----")
@@ -27,8 +27,8 @@ func Show(pokemon models.Pokemon) {
 	}
 }
 
-func printPokemonTypes(pokemonType models.Type, single bool) {
-	if single == true {
+func printPokemonTypes(pokemonType models.Type, singleType bool) {
+	if singleType == false {
 		fmt.Print("Type ", pokemonType.Number, ":")
 	} else {
 		fmt.Print("Type:")
