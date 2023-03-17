@@ -12,12 +12,13 @@ func main() {
 	var enteredPokemonNameOrPokedexNumber string
 
 	fmt.Println("Search for a Pokémon by name: ")
+
 	_, err := fmt.Scanf("%s", &enteredPokemonNameOrPokedexNumber)
 	if err != nil {
 		log.Fatal("An unexpected error occurred:", err)
 	}
 
-	show(app.CreatePokemon(enteredPokemonNameOrPokedexNumber))
+	show(app.FindPokemon(enteredPokemonNameOrPokedexNumber))
 }
 
 func show(pokemon models.Pokemon) {

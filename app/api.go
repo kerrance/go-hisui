@@ -10,9 +10,9 @@ import (
 	"strings"
 )
 
-func CreatePokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
-	pokemonUrl := "https://pokeapi.co/api/v2/pokemon/"
-	req, _ := http.Get(pokemonUrl + strings.ToLower(enteredPokemonNameOrPokedexNumber))
+func FindPokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
+	pokemonApiUrl := "https://pokeapi.co/api/v2/pokemon/"
+	req, _ := http.Get(pokemonApiUrl + strings.ToLower(enteredPokemonNameOrPokedexNumber))
 
 	if req.StatusCode != 200 {
 		log.Fatalln("Pokémon not found. Please correct your search term and try again.")
@@ -23,11 +23,10 @@ func CreatePokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
 		log.Fatal("An unexpected error occurred:", err)
 	}
 
-	pokemonJson := models.Pokemon{}
-
-	if err := njson.Unmarshal(json, &pokemonJson); err != nil {
+	foundPokemonJson := models.Pokemon{}
+	if err := njson.Unmarshal(json, &foundPokemonJson); err != nil {
 		fmt.Println(err)
 	}
 
-	return pokemonJson
+	return foundPokemonJson
 }
