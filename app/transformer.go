@@ -36,5 +36,5 @@ func printPokemonAbilities(pokemonAbility models.Ability) {
 		fmt.Print("Ability ", pokemonAbility.Slot, ":")
 	}
 
-	fmt.Printf(" %+v\n", strings.ToTitle(pokemonAbility.Name))
+	fmt.Printf(" %+v\n", pokemonAbility.Name)
 }
