@@ -12,6 +12,10 @@ func ConvertStringToTitleCase(stringToConvert string) string {
 	return cases.Title(language.Und, cases.NoLower).String(strings.ReplaceAll(stringToConvert, "-", " "))
 }
 
+func ConvertStringToKebabCase(stringToConvert string) string {
+	return strings.ToLower(strings.ReplaceAll(stringToConvert, " ", "-"))
+}
+
 func ConvertDecimetersToMeters(height int) string {
 	if height >= 10 {
 		var heightAsFloat = float64(height)
