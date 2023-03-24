@@ -7,13 +7,11 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func FindPokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
 	pokemonApiUrl := "https://pokeapi.co/api/v2/pokemon/"
-	req, _ := http.Get(pokemonApiUrl + strings.ToLower(enteredPokemonNameOrPokedexNumber))
-
+	req, _ := http.Get(pokemonApiUrl + ConvertStringToKebabCase(enteredPokemonNameOrPokedexNumber))
 	if req.StatusCode != 200 {
 		log.Fatalln("Pokémon not found. Please correct your search term and try again.")
 	}
