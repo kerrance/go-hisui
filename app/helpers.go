@@ -5,10 +5,11 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"strconv"
+	"strings"
 )
 
 func ConvertStringToTitleCase(stringToConvert string) string {
-	return cases.Title(language.Und, cases.NoLower).String(stringToConvert)
+	return cases.Title(language.Und, cases.NoLower).String(strings.ReplaceAll(stringToConvert, "-", " "))
 }
 
 func ConvertDecimetersToMeters(height int) string {
