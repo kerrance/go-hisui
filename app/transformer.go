@@ -3,10 +3,11 @@ package app
 import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app/models"
+	"strings"
 )
 
 func Show(pokemon models.Pokemon) {
-	fmt.Println("Name:", ConvertStringToTitleCase(pokemon.Name))
+	printPokemonName(pokemon.Name)
 	fmt.Printf("National Pokédex number: %0*d\n", 4, pokemon.ID)
 	fmt.Println("Height:", ConvertDecimetersToMeters(pokemon.Height))
 	fmt.Println("Weight:", ConvertHectogramsToKilograms(pokemon.Weight))
@@ -32,6 +33,28 @@ func Show(pokemon models.Pokemon) {
 			printPokemonAbilities(pokemonAbilities)
 		}
 	}
+}
+
+func printPokemonName(pokemonName string) {
+	switch pokemonName {
+	case "ho-oh":
+	case "porygon-z":
+	case "jangmo-o":
+	case "hakamo-o":
+	case "kommo-o":
+	case "ting-lu":
+	case "chien-pao":
+	case "wo-chien":
+	case "chi-yu":
+		fmt.Println("matched")
+		ConvertStringToTitleCase(pokemonName)
+		pokemonName = strings.ReplaceAll(pokemonName, " ", "-")
+	default:
+		fmt.Println("not matched")
+		pokemonName = ConvertStringToTitleCase(pokemonName)
+	}
+
+	fmt.Println("Name:", pokemonName)
 }
 
 func printPokemonTypes(pokemonType models.Type, singleType bool) {
