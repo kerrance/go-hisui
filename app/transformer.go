@@ -36,25 +36,13 @@ func Show(pokemon models.Pokemon) {
 }
 
 func printPokemonName(pokemonName string) {
-	switch pokemonName {
-	case "ho-oh":
-	case "porygon-z":
-	case "jangmo-o":
-	case "hakamo-o":
-	case "kommo-o":
-	case "ting-lu":
-	case "chien-pao":
-	case "wo-chien":
-	case "chi-yu":
-		fmt.Println("matched")
-		ConvertStringToTitleCase(pokemonName)
-		pokemonName = strings.ReplaceAll(pokemonName, " ", "-")
-	default:
-		fmt.Println("not matched")
-		pokemonName = ConvertStringToTitleCase(pokemonName)
+	transformedPokemonName := ConvertStringToTitleCase(pokemonName)
+
+	if CheckPokemonNameShouldBeHyphenated(pokemonName) == true {
+		transformedPokemonName = strings.ReplaceAll(transformedPokemonName, " ", "-")
 	}
 
-	fmt.Println("Name:", pokemonName)
+	fmt.Println("Name:", transformedPokemonName)
 }
 
 func printPokemonTypes(pokemonType models.Type, singleType bool) {
