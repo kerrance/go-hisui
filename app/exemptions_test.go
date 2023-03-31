@@ -26,6 +26,7 @@ func TestShouldPokemonNameBeHyphenated(t *testing.T) {
 		{"Provide a non-hypenated Pokémon name", "type: null", false},
 		{"Provide a non-hypenated Pokémon name", "iron LEAVES", false},
 		{"Provide a non-hypenated Pokémon name", "mew two", false},
+		{"Provide a non-hypenated Pokémon name", "tapu-koko", false},
 	}
 
 	for _, testCase := range testCases {
