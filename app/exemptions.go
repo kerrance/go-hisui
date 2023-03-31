@@ -1,7 +1,9 @@
 package app
 
+import "strings"
+
 func ShouldPokemonNameBeHyphenated(pokemonName string) bool {
-	switch pokemonName {
+	switch strings.ToLower(pokemonName) {
 	case
 		"chi-yu",
 		"chien-pao",
