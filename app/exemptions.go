@@ -1,6 +1,6 @@
 package app
 
-func CheckPokemonNameShouldBeHyphenated(pokemonName string) bool {
+func ShouldPokemonNameBeHyphenated(pokemonName string) bool {
 	switch pokemonName {
 	case
 		"chi-yu",
