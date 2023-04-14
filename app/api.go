@@ -10,19 +10,20 @@ import (
 )
 
 func FindPokemon(enteredPokemonNameOrPokedexNumber string) models.Pokemon {
-	pokemonApiUrl := "https://pokeapi.co/api/v2/pokemon/"
-	req, _ := http.Get(pokemonApiUrl + ConvertStringToKebabCase(enteredPokemonNameOrPokedexNumber))
-	if req.StatusCode != 200 {
+	pokeApiPokemonUrl, _ := http.Get(
+		"https://pokeapi.co/api/v2/pokemon/" + ConvertStringToKebabCase(enteredPokemonNameOrPokedexNumber),
+	)
+	if pokeApiPokemonUrl.StatusCode != 200 {
 		log.Fatalln("Pokémon not found. Please correct your search term and try again.")
 	}
 
-	json, err := io.ReadAll(req.Body)
+	pokemonJson, err := io.ReadAll(pokeApiPokemonUrl.Body)
 	if err != nil {
 		log.Fatal("An unexpected error occurred:", err)
 	}
 
 	foundPokemonJson := models.Pokemon{}
-	if err := njson.Unmarshal(json, &foundPokemonJson); err != nil {
+	if err := njson.Unmarshal(pokemonJson, &foundPokemonJson); err != nil {
 		fmt.Println(err)
 	}
 
