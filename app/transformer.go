@@ -36,6 +36,8 @@ func Show(pokemon models.Pokemon) {
 }
 
 func printPokemonName(pokemonName string) {
+	pokemonName = DisplayPokemonNameWithPunctuationMarkIfNeeded(pokemonName)
+
 	pokemonName = ConvertStringToTitleCase(pokemonName)
 	if ShouldPokemonNameBeHyphenated(pokemonName) == true {
 		pokemonName = strings.ReplaceAll(pokemonName, " ", "-")
