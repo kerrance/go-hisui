@@ -13,14 +13,14 @@ func ConvertStringToTitleCase(stringToConvert string) string {
 }
 
 func ConvertStringToKebabCase(stringToConvert string) string {
-	return strings.ToLower(ReplaceHyphensWithSpaces(stringToConvert))
-}
-
-func ReplaceHyphensWithSpaces(stringToConvert string) string {
-	return strings.ReplaceAll(stringToConvert, " ", "-")
+	return strings.ToLower(ReplaceSpacesWithHyphens(stringToConvert))
 }
 
 func ReplaceSpacesWithHyphens(stringToConvert string) string {
+	return strings.ReplaceAll(stringToConvert, " ", "-")
+}
+
+func ReplaceHyphensWithSpaces(stringToConvert string) string {
 	return strings.ReplaceAll(stringToConvert, "-", " ")
 }
 

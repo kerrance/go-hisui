@@ -39,9 +39,9 @@ func printPokemonName(pokemonName string) {
 
 	pokemonName = ConvertStringToTitleCase(pokemonName)
 	if ShouldPokemonNameBeHyphenated(pokemonName) == true {
-		pokemonName = ReplaceHyphensWithSpaces(pokemonName)
-	} else {
 		pokemonName = ReplaceSpacesWithHyphens(pokemonName)
+	} else {
+		pokemonName = ReplaceHyphensWithSpaces(pokemonName)
 	}
 
 	fmt.Println("Name:", pokemonName)
@@ -71,5 +71,5 @@ func printPokemonAbilities(pokemonAbility models.Ability) {
 }
 
 func printPokemonAbility(pokemonAbility models.Ability) (int, error) {
-	return fmt.Printf(" %+v\n", ReplaceSpacesWithHyphens(ConvertStringToTitleCase(pokemonAbility.Name)))
+	return fmt.Printf(" %+v\n", ReplaceHyphensWithSpaces(ConvertStringToTitleCase(pokemonAbility.Name)))
 }
