@@ -13,7 +13,15 @@ func ConvertStringToTitleCase(stringToConvert string) string {
 }
 
 func ConvertStringToKebabCase(stringToConvert string) string {
-	return strings.ToLower(strings.ReplaceAll(stringToConvert, " ", "-"))
+	return strings.ToLower(ReplaceHyphensWithSpaces(stringToConvert))
+}
+
+func ReplaceHyphensWithSpaces(stringToConvert string) string {
+	return strings.ReplaceAll(stringToConvert, " ", "-")
+}
+
+func ReplaceSpacesWithHyphens(stringToConvert string) string {
+	return strings.ReplaceAll(stringToConvert, "-", " ")
 }
 
 func ConvertDecimetersToMeters(height int) string {

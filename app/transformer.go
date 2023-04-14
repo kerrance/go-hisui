@@ -72,5 +72,5 @@ func printPokemonAbilities(pokemonAbility models.Ability) {
 }
 
 func printPokemonAbility(pokemonAbility models.Ability) (int, error) {
-	return fmt.Printf(" %+v\n", pokemonAbility.Name)
+	return fmt.Printf(" %+v\n", ReplaceSpacesWithHyphens(ConvertStringToTitleCase(pokemonAbility.Name)))
 }
