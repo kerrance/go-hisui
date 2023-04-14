@@ -36,13 +36,14 @@ func Show(pokemon models.Pokemon) {
 }
 
 func printPokemonName(pokemonName string) {
-	transformedPokemonName := ConvertStringToTitleCase(pokemonName)
-
+	pokemonName = ConvertStringToTitleCase(pokemonName)
 	if ShouldPokemonNameBeHyphenated(pokemonName) == true {
-		transformedPokemonName = strings.ReplaceAll(transformedPokemonName, " ", "-")
+		pokemonName = strings.ReplaceAll(pokemonName, " ", "-")
+	} else {
+		pokemonName = strings.ReplaceAll(pokemonName, "-", " ")
 	}
 
-	fmt.Println("Name:", transformedPokemonName)
+	fmt.Println("Name:", pokemonName)
 }
 
 func printPokemonTypes(pokemonType models.Type, singleType bool) {
