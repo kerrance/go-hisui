@@ -9,7 +9,7 @@ import (
 )
 
 func ConvertStringToTitleCase(stringToConvert string) string {
-	return cases.Title(language.Und, cases.NoLower).String(strings.ReplaceAll(stringToConvert, "-", " "))
+	return cases.Title(language.Und, cases.NoLower).String(stringToConvert)
 }
 
 func ConvertStringToKebabCase(stringToConvert string) string {
