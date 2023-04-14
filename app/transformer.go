@@ -3,7 +3,6 @@ package app
 import (
 	"fmt"
 	"github.com/kerrance/go-hisui/app/models"
-	"strings"
 )
 
 func Show(pokemon models.Pokemon) {
@@ -40,9 +39,9 @@ func printPokemonName(pokemonName string) {
 
 	pokemonName = ConvertStringToTitleCase(pokemonName)
 	if ShouldPokemonNameBeHyphenated(pokemonName) == true {
-		pokemonName = strings.ReplaceAll(pokemonName, " ", "-")
+		pokemonName = ReplaceHyphensWithSpaces(pokemonName)
 	} else {
-		pokemonName = strings.ReplaceAll(pokemonName, "-", " ")
+		pokemonName = ReplaceSpacesWithHyphens(pokemonName)
 	}
 
 	fmt.Println("Name:", pokemonName)
