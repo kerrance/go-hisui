@@ -18,6 +18,7 @@ func main() {
 	}
 	enteredPokemonNameOrPokedexNumber := strings.TrimSuffix(consoleInput, "\n")
 
-	sanitisedPokemonName := app.SanitisePokemonNameForSearch(enteredPokemonNameOrPokedexNumber)
+	clarifiedPokemonName := app.ClarifyPokemonNameForSearch(enteredPokemonNameOrPokedexNumber)
+	sanitisedPokemonName := app.SanitisePokemonNameForSearch(clarifiedPokemonName)
 	app.Show(app.FindPokemon(sanitisedPokemonName))
 }
