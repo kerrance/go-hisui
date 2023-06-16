@@ -1,6 +1,6 @@
 # Hisui
 
-Search for and display information about a Pokémon.
+Search and display information about a Pokémon in Slack.
 
 All Pokémon information is retrieved from [PokéAPI](https://pokeapi.co/).
 
